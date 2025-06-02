@@ -63,3 +63,40 @@ if __name__ == '__main__':
     # print(f"Test with corrupt file: {get_compilation_number()}") # Should be 0 and print warning
     # increment_compilation_number(get_compilation_number()) # Should reset to 1
     # print(f"Value after corrupt file increment: {get_compilation_number()}")
+
+
+def generate_youtube_video_title(compilation_number: int, game_name: str = None, title_format: str = "MEILLEURS CLIPS TWITCH {GAME_NAME_PREFIX}🔥 Compil du Jour n°{X}"):
+    """
+    Generates a video title for YouTube.
+
+    Args:
+        compilation_number (int): The current compilation number.
+        game_name (str, optional): The name of the game. If provided, it's included in the title.
+        title_format (str, optional): A format string for the title. 
+                                        Placeholders: {X} for number, {GAME_NAME_PREFIX} for "GAME_NAME " or empty.
+
+    Returns:
+        str: The generated video title.
+    """
+    
+    game_name_prefix = ""
+    if game_name:
+        game_name_prefix = game_name.upper() + " " # Example: "FORTNITE "
+    
+    # Replace placeholders
+    title = title_format.replace("{X}", str(compilation_number))
+    title = title.replace("{GAME_NAME_PREFIX}", game_name_prefix)
+    
+    # Ensure no double spaces if game_name_prefix was empty and format expected a space after it
+    title = title.replace("  ", " ").strip() 
+    
+    return title
+
+if __name__ == '__main__':
+    # ... (existing test code for compilation counter) ...
+
+    print("\n--- Testing generate_youtube_video_title ---")
+    print(f"Title (no game): {generate_youtube_video_title(compilation_number=123)}")
+    print(f"Title (with game): {generate_youtube_video_title(compilation_number=124, game_name='Valorant')}")
+    print(f"Title (with game, custom format): {generate_youtube_video_title(compilation_number=125, game_name='Apex Legends', title_format='BEST OF {GAME_NAME_PREFIX} Clips - #{X}')}")
+    print(f"Title (no game, custom format): {generate_youtube_video_title(compilation_number=126, title_format='Twitch Highlights #{X}')}")
