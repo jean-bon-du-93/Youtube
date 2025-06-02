@@ -3,6 +3,8 @@ CLIENT_ID = YOUR_TWITCH_CLIENT_ID
 CLIENT_SECRET = YOUR_TWITCH_CLIENT_SECRET
 # Optional: Specify game/category ID for clips (e.g., 509658 for "Just Chatting")
 GAME_ID =
+# Optional: Specify a readable game name if filtering by GAME_ID, for use in titles/descriptions
+GAME_NAME =
 # Optional: Specify language for clips (e.g., "en", "fr")
 CLIP_LANGUAGE =
 # Period to fetch clips from: "last_24_hours", "last_7_days", "last_30_days"
@@ -13,6 +15,13 @@ CLIENT_SECRET_FILE = client_secret.json
 CHANNEL_ID = YOUR_YOUTUBE_CHANNEL_ID
 # Privacy status for uploaded videos: "public", "private", or "unlisted"
 PRIVACY_STATUS = public
+VIDEO_TITLE_FORMAT = "MEILLEURS CLIPS TWITCH {GAME_NAME_PREFIX}🔥 Compil du Jour n°{X}"
+# Example without game: "BEST TWITCH CLIPS! 🔥 Daily Compilation #{X}"
+# Example with game: "TOP {GAME_NAME_PREFIX}TWITCH MOMENTS! 🔥 Compilation #{X}"
+DESCRIPTION_INTRO = "Retrouvez les meilleurs moments Twitch de la journée !"
+BASE_TAGS = "Twitch,Compilation,Gaming,Highlights,Clips,Moments Forts" 
+# YouTube video category ID (e.g., 20 for Gaming, 22 for People & Blogs)
+CATEGORY_ID = 20
 
 [Video]
 # Target resolution: "720p" or "1080p"
@@ -21,3 +30,13 @@ RESOLUTION = 720p
 INTRO_FILE =
 # Optional: Path to an outro video file
 OUTRO_FILE =
+   # Target duration for the final compilation in minutes
+   TARGET_DURATION_MINUTES = 11
+   ADD_TITLE_BUMPER = True
+   TITLE_BUMPER_TEXT_FORMAT = "COMPIL DU JOUR n°{X}\n{GAME_NAME}" 
+   # Or simply: "COMPIL DU JOUR n°{X}" if no game name
+   BUMPER_DURATION_SECONDS = 5
+
+[General]
+# Log level for the application (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+LOG_LEVEL = INFO
